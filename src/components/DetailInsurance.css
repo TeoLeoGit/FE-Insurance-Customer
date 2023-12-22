@@ -1,0 +1,65 @@
+.detail-Container{
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   align-items: center;
+}
+
+.detail-Container .image{
+  height: 500px;
+  width: 500px;
+  transition: all 0.5s;
+  background-image: url('../../assets/images/goi-bao-hiem-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex: 1;
+}
+.Detail-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
+}
+.Detail-title h2{
+  font-weight: bold;
+  font-size: 40px;
+}
+.detail-content{
+  flex: 1;
+  padding: 20px;
+}
+.card-text-detail{
+  margin-bottom: 20px;
+  display: flex;
+}
+.card-text-detail .price{
+  margin-right: 10px;
+}
+.description-detail{
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+.btn-buy{
+  margin-left: 0px;
+  width: 34%;
+}
+.card-text{
+  margin-bottom: 6px;
+}
+.text-detail{
+  text-align: justify;
+}
+.back-list{
+  position: relative;
+  top: 80px;
+  left: 30px;
+  color: rgb(93, 14, 251);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 25px;
+}
+.back-list:hover{
+  color: rgb(164, 183, 41);
+  transition: 0.2s;
+}

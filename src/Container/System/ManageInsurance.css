@@ -1,0 +1,15 @@
+.container-manage{
+  width: 100%;
+  height: 100vh;
+  padding: 60px 80px;
+}
+.container-manage h2{
+  text-align: center;
+}
+.input-container{
+  margin-bottom: 15px;
+}
+.btn-add{
+  margin-top: 10px;
+  margin-left: 20px;
+}
