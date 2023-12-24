@@ -11,7 +11,7 @@ const TableManageInsurance = ({ arr, HandleEdit }) => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const handleDelete = async (id) => {
-    await axios.delete(`https://localhost:44313/api/Insurance/${id}`);
+    await axios.delete(`http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`);
     //toast.success("Xóa thông tin gói bảo hiểm thành công");
     window.location.reload();
   };

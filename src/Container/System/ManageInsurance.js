@@ -20,7 +20,7 @@ const ManageInsurance = () => {
   const handleAddInsurance = async () => {
     try {
       if (isEdit === false) {
-        await axios.post("https://localhost:44313/api/Insurance", {
+        await axios.post("http://nguyen1-001-site1.ftempurl.com/api/Insurance", {
           name: name,
           title: title,
           price: +price,
@@ -30,7 +30,7 @@ const ManageInsurance = () => {
         });
         toast.success("Tạo gói bảo hiểm thành công !");
       } else {
-        await axios.put(`https://localhost:44313/api/Insurance/${idEdit}`, {
+        await axios.put(`http://nguyen1-001-site1.ftempurl.com/api/Insurance/${idEdit}`, {
           name: name,
           title: title,
           price: +price,
@@ -54,7 +54,7 @@ const ManageInsurance = () => {
   useEffect(() => {
     try {
       const loading = async () => {
-        let res = await axios.get("https://localhost:44313/api/Insurance");
+        let res = await axios.get("http://nguyen1-001-site1.ftempurl.com/api/Insurance");
         setArrInsurance(res.data);
       };
       loading();

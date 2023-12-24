@@ -3,3 +3,12 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.footer-login{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.footer-login a{
+  text-decoration: underline;
+  color: blue;
+}

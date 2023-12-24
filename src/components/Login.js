@@ -36,10 +36,10 @@ const LoginForm = () => {
                     </div>
                     <div className="col-lg-6">
                         <div className="contact-us-form">
-                            <h2>Login to your account</h2>
-                            <p>Login your account to access our valuable services.</p>
+                            <h2>Đăng nhập tài khoản</h2>
+                            <p>Đăng nhập tài khoản để truy cập các dịch vụ của chúng tôi.</p>
                             {/* <!-- Form --> */}
-                            <form className="form" method="post" action="mail/mail.php">
+                            <div className="form" >
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="form-group">
@@ -58,8 +58,12 @@ const LoginForm = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                             {/* <!--/ End Form --> */}
+                            <div className="footer-login">
+                                <span className="text-notification" style={{color:"red"}}>{err}</span>
+                                <a href="/register">Đăng kí tài khoản mới</a>
+                            </div>
                         </div>
                     </div>
                 </div>

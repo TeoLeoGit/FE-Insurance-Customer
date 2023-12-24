@@ -14,7 +14,7 @@ const RegisterForm = ({ onRegister }) => {
   const handleOnclick = async (e) => {
     try {
       console.log(email, password, retypePassword, name, number);
-      const response = await axios.post("https://localhost:44313/api/User", {
+      const response = await axios.post("http://nguyen1-001-site1.ftempurl.com/api/User", {
         email,
         password,
         retypePassword,
@@ -23,8 +23,8 @@ const RegisterForm = ({ onRegister }) => {
       });
       console.log(response);
       // Xử lý dữ liệu từ response
-      if (response && response.data && response.data.errorCode === 0) {
-        setMessage(response.data.message);
+      if (response && response.data && response.data.errorCode === 6) {
+        setMessage(response.data.errorMessage);
         setError("");
       }
     } catch (error) {
@@ -33,95 +33,65 @@ const RegisterForm = ({ onRegister }) => {
       console.log(error);
     }
   };
-
+ console.log("state : ", name)
   return (
-    <div className="container-register">
-      <div class="card" style={{ width: "400px" }}>
-        <div class="card-header text-center">
-          <h2>Register</h2>
+    <section className="contact-us section">
+    <div className="container">
+        <div className="inner">
+            <div className="row"> 
+                <div className="col-lg-6" >
+                    <img className="center"src="https://img.freepik.com/premium-vector/health-insurance-concept-hospital-medical-care-vector-illustration-flat_186332-1182.jpg?w=1380" alt="#"/>
+                </div>
+                <div className="col-lg-6">
+                    <div className="contact-us-form">
+                        <h2>Đăng ký tài khoản</h2>
+                        <p>Đăng ký tài khoản để truy cập các dịch vụ của chúng tôi.</p>
+                        {/* <!-- Form --> */}
+                        <div className="form">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <input name="email" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <input name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <input name="retyprPassword" type="Password" placeholder="Retype Password" value={retypePassword} onChange={(e) => setRetypePassword(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <input name="FullName" type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <input name="number" type="text" placeholder="Number" value={number} onChange={(e) => setNumber(e.target.value)}/>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="form-group login-btn">
+                                        <button className="btn" type="submit" onClick={handleOnclick} >Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <!--/ End Form --> */}
+                        <div className="footer-register">
+                            <span className="text-notification" style={{color: message? "blue" : "red"}}>{err}{message}</span>
+                            <a href="/login">Đăng nhập</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <div class="row g-3" method="POST">
-            <div class="col-12">
-              <input
-                type="text"
-                class="form-control {{validate}}"
-                placeholder="Email"
-                id="Email"
-                name="Email"
-                //value="{{username}}"
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div class="col-12">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                id="password"
-                name="password"
-                //value="{{password}}"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div class="col-12">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Retype Password"
-                id="retypePassword"
-                name="retypePassword"
-                // value="{{email}}"
-                required
-                onChange={(e) => setRetypePassword(e.target.value)}
-              />
-            </div>
-            <div class="col-12">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                id="name"
-                name="name"
-                //value="{{name}}"
-                required
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div class="col-12">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Number"
-                id="Number"
-                name="Number"
-                // value="{{email}}"
-                required
-                onChange={(e) => setNumber(e.target.value)}
-              />
-            </div>
-            <div class="col-12">
-              <button
-                class="btn btn-primary w-100"
-                type="submit"
-                onClick={handleOnclick}
-              >
-                Register
-              </button>
-            </div>
-            <div class="text-danger">{err}</div>
-            <div class="text-danger">{message}</div>
-            <div class="col-12">
-              <span>
-                Already have an account? <a href="/login">Login </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+</section>
   );
 };
 

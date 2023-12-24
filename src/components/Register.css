@@ -10,3 +10,14 @@
   background-position: center; */
   background-color: rgb(54, 158, 158);
 }
+
+.footer-register{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.footer-register a{
+  text-decoration: underline;
+  color: blue;
+}

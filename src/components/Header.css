@@ -1,0 +1,24 @@
+.user-container{
+  display: flex;
+  align-items: center;
+}
+.user{
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.user .name{
+  margin-right: 5px;
+}
+.user i{
+  cursor: pointer;
+}
+.user i:hover{
+  color: blue;
+  transition: 0.2s;
+}
+.btn-logout i:hover{
+  color: red;
+  cursor: pointer;
+  transition: 0.2s;
+}

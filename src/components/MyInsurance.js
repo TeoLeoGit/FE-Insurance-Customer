@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import "./PayMentRequest.css";
+import "./MyInsurance.css";
 import Header from "./Header";
-const PaymentRequest = () => {
+const MyInsurance = () => {
   return (
     <div>
       <Header />
       <h2 style={{ marginTop: "50px", textAlign: "center" }}>
-        Yêu cầu thanh toán
+        Bạn chưa đăng kí mua gói bảo hiểm nào
       </h2>
     </div>
   );
 };
 
-export default PaymentRequest;
+export default MyInsurance;
