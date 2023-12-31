@@ -4,6 +4,7 @@ import axios from "axios";
 import "./DetailInsurance.css";
 import Header from "./Header";
 import BuyModal from "./BuyModal";
+import { Link } from "react-router-dom";
 const DetailInsurance = () => {
   const history = useHistory();
   const [item, setItem] = useState("");
@@ -21,11 +22,11 @@ const DetailInsurance = () => {
     } catch (e) {
       console.log(e);
     }
-  });
-  const handleBack = () => {
-    history.push("/listInsurance");
-    window.location.reload();
-  };
+  }, [id]);
+  // const handleBack = () => {
+  //   history.push("/listInsurance");
+  //   window.location.reload();
+  // };
   const handleHideModal = () => {
     SetIsShowModal(!isShowModal);
   };
@@ -33,14 +34,21 @@ const DetailInsurance = () => {
     <>
       <Header />
       <div>
-        <span className="back-list" onClick={handleBack}>
-          <i class="fa-solid fa-arrow-left"></i>
+        <span className="back-list">
+          <Link to="/ListInsurance">
+            <i class="fa-solid fa-arrow-left"></i>
+          </Link>
         </span>
         <div className="Detail-title">
           <h2>Chi tiết gói bảo hiểm</h2>
         </div>
         <div className="detail-Container">
-          <div className="image"></div>
+          <div
+            className="image-insurance"
+            style={{
+              backgroundImage: `url(${item.image})`,
+            }}
+          ></div>
           <div className="detail-content">
             <h5 data-id="title" class="card-title">
               {item.name}
@@ -72,7 +80,11 @@ const DetailInsurance = () => {
             </button>
           </div>
         </div>
-        <BuyModal handleHideModal={handleHideModal} isShowModal={isShowModal} />
+        <BuyModal
+          handleHideModal={handleHideModal}
+          isShowModal={isShowModal}
+          id={id}
+        />
       </div>
     </>
   );

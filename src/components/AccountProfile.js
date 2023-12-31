@@ -1,22 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./AccountProfile.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
-
+import { AppContext } from "../Context/AppContext";
+import { toast } from "react-toastify";
 const AccountProfile = () => {
-  // const [user, setuser] = useState("")
-  // useEffect(() => {
-  //   try {
-  //     const loading = async () => {
-  //       let res = await axios.get("http://nguyen1-001-site1.ftempurl.com/api/");
-  //       //setuser(res.data);
-  //     };
-  //     loading();
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }, []);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const { user, setUser } = useContext(AppContext);
+  let id = user.userID;
+
+  const HandleChangeUser = async () => {
+    try {
+      await axios.put(`http://nguyen1-001-site1.ftempurl.com/api/User/${id}`, {
+        displayName: name,
+        phone: phone,
+      });
+      setPhone("");
+      setName("");
+      toast.success("Cập nhật thông tin thành công !!");
+    } catch (e) {
+      console.log("error : ", e);
+      toast.error("Cập nhật thông tin thất bại !!");
+    }
+  };
+
+  useEffect(() => {
+    let loadUser = async () => {
+      let res = await axios.get(
+        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`
+      );
+      console.log("res : ", res);
+      setUser(res.data);
+    };
+    loadUser();
+  }, [user, id, setUser]);
 
   return (
     <section className="news-single section">
@@ -39,19 +58,19 @@ const AccountProfile = () => {
                             <div className="col-lg-4 col-md-4 col-12">
                               <div className="info">
                                 <h4>Name</h4>
-                                <p>Trương Công Quốc Cường</p>
+                                <p>{user.displayName}</p>
                               </div>
                             </div>
                             <div className="col-lg-4 col-md-4 col-12">
                               <div className="info">
                                 <h4>Email</h4>
-                                <p>truongcuong@gmail.com</p>
+                                <p>{user.email}</p>
                               </div>
                             </div>
                             <div className="col-lg-4 col-md-4 col-12">
                               <div className="info">
                                 <h4>Contact number</h4>
-                                <p>093432432</p>
+                                <p>{user.phone}</p>
                               </div>
                             </div>
                           </div>
@@ -64,12 +83,17 @@ const AccountProfile = () => {
               <div className="col-12">
                 <div className="comments-form">
                   <h2>Update profile</h2>
-                  <form className="form" method="post" action="mail/mail.php">
+                  <div className="form">
                     <div className="row">
                       <div className="col-lg-4 col-md-4 col-12">
                         <div className="form-group">
                           <i className="fa fa-user"></i>
-                          <input type="text" name="name" placeholder="Name" />
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                            onChange={(e) => setName(e.target.value)}
+                          />
                         </div>
                       </div>
                       <div className="col-lg-4 col-md-4 col-12">
@@ -79,10 +103,11 @@ const AccountProfile = () => {
                             type="tel"
                             name="phone"
                             placeholder="Contact number"
+                            onChange={(e) => setPhone(e.target.value)}
                           />
                         </div>
                       </div>
-                      <div className="col-lg-4 col-md-4 col-12">
+                      {/* <div className="col-lg-4 col-md-4 col-12">
                         <div className="form-group">
                           <i className="fa fa-envelope"></i>
                           <input
@@ -91,16 +116,19 @@ const AccountProfile = () => {
                             placeholder="Your Email"
                           />
                         </div>
-                      </div>
+                      </div> */}
                       <div className="col-12">
                         <div className="form-group button">
-                          <button type="submit" className="btn primary">
-                            <i className="fa fa-edit"></i>Submit Changes
+                          <button
+                            className="btn primary"
+                            onClick={HandleChangeUser}
+                          >
+                            <i className="fa fa-edit"></i>Lưu thay đổi
                           </button>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

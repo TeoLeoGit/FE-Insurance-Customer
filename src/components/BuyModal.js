@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./BuyModal.css";
 import { Modal } from "reactstrap";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { AppContext } from "../Context/AppContext";
 const BuyModal = (props) => {
   const [Date, setDate] = useState("");
+  const { user } = useContext(AppContext);
+  let userId = user.userID;
   const handleHideModal = () => {
     props.handleHideModal();
+  };
+  const handleSaveBuy = async () => {
+    try {
+      let res = await axios.post(
+        "http://nguyen1-001-site1.ftempurl.com/api/Purchase",
+        {
+          id: props.id,
+          userId: userId,
+        }
+      );
+      console.log("res : ", res);
+      props.handleHideModal();
+      toast.success(
+        "Đăng ký mua gói bảo hiểm thành công Vui lòng tới chi nhánh gần nhất để hoàn thành hợp đồng và thanh toán"
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <>
       <Modal
         isOpen={props.isShowModal}
         className={"modal-booking-container"}
-        size="lg"
+        size="md"
         centered
       >
         <div className="booking-modal-content">
@@ -21,12 +44,7 @@ const BuyModal = (props) => {
               x
             </span>
           </div>
-          <div className="booking-modal-body">
-            {/* <ProfileDoctor
-              doctorId={doctorId}
-              isShowDescriptionDoctor={false}
-              datatime={datatime}
-            /> */}
+          {/* <div className="booking-modal-body">
             <div className="row">
               <div className="col-6 form-group">
                 <label>Họ Tên</label>
@@ -65,25 +83,13 @@ const BuyModal = (props) => {
                   value={Date}
                 />
               </div>
-              {/* <div className="col-6 form-group">
-                <label>Ngày sinh</label>
-              </div> */}
               <div className="col-6 form-group">
                 <label></label>
-                {/* <Select
-                  value={this.state.selectedGender}
-                  onChange={(e) => this.handleChange(e)}
-                  options={this.state.genders}
-                  placeholder={"Giới Tính"}
-                /> */}
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="booking-modal-footer">
-            <button
-              className="btn-confirm"
-              // onClick={() => this.handleSaveBooking()}
-            >
+            <button className="btn-confirm" onClick={handleSaveBuy}>
               Xác nhận
             </button>
             <button className="btn-cancel" onClick={handleHideModal}>

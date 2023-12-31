@@ -1,0 +1,8 @@
+.link-manage{
+  color: white;
+  margin-left: 20px;
+}
+.link-manage:hover{
+  color: rgb(27, 232, 12);
+  transition: 0.1s;
+}

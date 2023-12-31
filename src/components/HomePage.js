@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import { AppContext } from "../Context/AppContext";
 
 const HomePage = () => {
+  const { user } = useContext(AppContext);
+  console.log("user : ", user);
   return (
     <div className="container-homepage">
       <Header />
       <div>
-        <div className="preloader">
+        {/* <div className="preloader">
           <div className="loader">
             <div className="loader-outter"></div>
             <div className="loader-inner"></div>
@@ -25,7 +29,7 @@ const HomePage = () => {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <ul className="pro-features">
           <li className="big-title">Pro Version Available on Themeforest</li>
@@ -64,19 +68,19 @@ const HomePage = () => {
                         bảo hiểm sức khỏe cho bạn.{" "}
                       </p>
                       <div className="button">
-                        <a href="/ListInsurance" className="btn">
+                        <Link to="/ListInsurance" className="btn">
                           Đặt mua ngay
-                        </a>
-                        <a href="/" className="btn primary">
+                        </Link>
+                        <Link to="/" className="btn primary">
                           Tìm hiểu thêm
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
+            {/* <div
               className="single-slider"
               style={{ backgroundImage: `./img/placeholder.png` }}
             >
@@ -133,7 +137,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 
