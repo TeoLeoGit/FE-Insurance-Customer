@@ -8,6 +8,7 @@ const RequestPaymentModal = (props) => {
   const { user } = useContext(AppContext);
   let userId = user.userID;
   
+  const token = localStorage.getItem('token');
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,6 +35,7 @@ const RequestPaymentModal = (props) => {
         formData,
         {
           headers: {
+            'Authorization': `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }

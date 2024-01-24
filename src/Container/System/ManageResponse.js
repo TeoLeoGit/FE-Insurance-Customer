@@ -3,13 +3,20 @@ import "./ManageResponse.css";
 import axios from "axios";
 import HeaderManage from "./HeaderManage";
 import { toast } from "react-toastify";
+
+const token = localStorage.getItem('token');
 const ManageResponse = () => {
   let [arr, setArr] = useState([]);
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/Feedback`
+          `http://nguyen1-001-site1.ftempurl.com/api/Feedback`,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            },
+          }
         );
         setArr(res.data);
       };
@@ -22,7 +29,12 @@ const ManageResponse = () => {
     console.log("id : ", item.id);
     try {
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/Feedback/${item.id}`
+        `https://localhost:44341/api/Feedback/${item.id}`,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          },
+        }
       );
       console.log("res response : ", res);
       toast.success("Đã phản hồi khách hàng thành công !!");

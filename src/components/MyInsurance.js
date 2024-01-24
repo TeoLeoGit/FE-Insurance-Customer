@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import { AppContext } from "../Context/AppContext";
 
+const token = localStorage.getItem('token');
 const MyInsurance = () => {
   let [arrInsurance, setArrInsurance] = useState([]);
   const history = useHistory();
@@ -19,7 +20,12 @@ const MyInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/User/${user.userID}/purchased-insurances`
+          `http://nguyen1-001-site1.ftempurl.com/${user.userID}/purchased-insurances`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
         console.log("res : ", res);
         setArrInsurance(res.data);

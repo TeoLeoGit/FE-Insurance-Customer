@@ -10,9 +10,16 @@ const TableManageInsurance = ({ arr, HandleEdit }) => {
   const [period, setPeriod] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+
+const token = localStorage.getItem('token');
   const handleDelete = async (id) => {
     await axios.delete(
-      `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`
+      `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+      }
     );
     toast.success("Xóa thông tin gói bảo hiểm thành công");
   };

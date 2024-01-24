@@ -9,12 +9,19 @@ const DetailInsurance = () => {
   const history = useHistory();
   const [item, setItem] = useState("");
   const [isShowModal, SetIsShowModal] = useState(false);
+
+  const token = localStorage.getItem('token');
   let { id } = useParams();
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `https://localhost:44341/api/Insurance/${id}`
+          `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
         setItem(res.data);
       };

@@ -11,11 +11,17 @@ const AccountProfile = () => {
   const { user, setUser } = useContext(AppContext);
   let id = user.userID;
 
+  const token = localStorage.getItem('token');
   const HandleChangeUser = async () => {
     try {
       await axios.put(`http://nguyen1-001-site1.ftempurl.com/api/User/${id}`, {
         displayName: name,
         phone: phone,
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       setPhone("");
       setName("");
@@ -29,7 +35,12 @@ const AccountProfile = () => {
   useEffect(() => {
     let loadUser = async () => {
       let res = await axios.get(
-        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`
+        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
       console.log("res : ", res);
       setUser(res.data);

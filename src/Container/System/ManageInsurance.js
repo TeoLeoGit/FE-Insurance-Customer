@@ -18,6 +18,7 @@ const ManageInsurance = () => {
 
   const [arrInsurance, setArrInsurance] = useState([]);
 
+  const token = localStorage.getItem('token');
   const handleAddInsurance = async () => {
     try {
       if (isEdit === false) {
@@ -34,6 +35,7 @@ const ManageInsurance = () => {
           {
             headers: {
               "Content-Type": "multipart/form-data",
+              'Authorization': `Bearer ${token}`
             },
           }
         );

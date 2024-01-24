@@ -8,6 +8,7 @@ import Header from "./Header";
 const ListOfInsurance = () => {
   let [arrInsurance, setArrInsurance] = useState([]);
   const history = useHistory();
+  const token = localStorage.getItem('token');
   const handleDetailInsurance = () => {
     history.push("/detailInsurance");
     window.location.reload();
@@ -17,11 +18,11 @@ const ListOfInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          "https://localhost:44341/api/Insurance",
+          "http://nguyen1-001-site1.ftempurl.com/api/Insurance",
           {
             headers: {
               'Authorization': `Bearer ${token}`
-            }
+            },
           }
         );
         setArrInsurance(res.data);

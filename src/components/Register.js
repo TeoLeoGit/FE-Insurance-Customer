@@ -11,6 +11,7 @@ const RegisterForm = ({ onRegister }) => {
   const [err, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  const token = localStorage.getItem('token');
   const handleOnclick = async (e) => {
     try {
       const response = await axios.post(
@@ -21,6 +22,11 @@ const RegisterForm = ({ onRegister }) => {
           retypePassword,
           displayName: name,
           phone: number,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       console.log(response);

@@ -15,7 +15,7 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.get(
-        `http://nguyen1-001-site1.ftempurl.com/api/User?email=${email}&password=${password}`
+        `http://nguyen1-001-site1.ftempurl.com/User?email=${email}&password=${password}`
       );
       // Xử lý dữ liệu từ response
       

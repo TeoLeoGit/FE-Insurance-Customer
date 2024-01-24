@@ -11,13 +11,21 @@ const BuyModal = (props) => {
   const handleHideModal = () => {
     props.handleHideModal();
   };
+
+  const token = localStorage.getItem('token');
   const handleSaveBuy = async () => {
     try {
+      console.log("Check token " + token);
       let res = await axios.post(
         "http://nguyen1-001-site1.ftempurl.com/api/Purchase",
         {
           id: props.id,
           userId: userId,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       props.handleHideModal();
