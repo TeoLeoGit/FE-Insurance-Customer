@@ -14,7 +14,7 @@ const DetailInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`
+          `https://localhost:44341/api/Insurance/${id}`
         );
         setItem(res.data);
       };

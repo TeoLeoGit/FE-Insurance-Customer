@@ -17,7 +17,12 @@ const ListOfInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          "http://nguyen1-001-site1.ftempurl.com/api/Insurance"
+          "https://localhost:44341/api/Insurance",
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
         setArrInsurance(res.data);
         console.log("res insurance : ", res.data);

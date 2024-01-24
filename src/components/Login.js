@@ -18,9 +18,13 @@ const LoginForm = () => {
         `http://nguyen1-001-site1.ftempurl.com/api/User?email=${email}&password=${password}`
       );
       // Xử lý dữ liệu từ response
-      let decodeToken = jwtDecode(response.data.token);
-      console.log(decodeToken);
+      
       if (response && response.data && response.data.token) {
+        let decodeToken = jwtDecode(response.data.token);
+        console.log(decodeToken);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(decodeToken));
+
         setUser(decodeToken);
         history.push("/");
         // window.location.reload();

@@ -7,7 +7,7 @@ import { AppContext } from "../Context/AppContext";
 const RequestPaymentModal = (props) => {
   const { user } = useContext(AppContext);
   let userId = user.userID;
-
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,7 +28,7 @@ const RequestPaymentModal = (props) => {
       formData.append("bankAcount", bankAcount);
       formData.append("bankName", bankName);
       formData.append("note", note);
-      formData.append("userID ", userId);
+      formData.append("userID", userId);
       let res = await axios.post(
         "http://nguyen1-001-site1.ftempurl.com/api/Payment",
         formData,
