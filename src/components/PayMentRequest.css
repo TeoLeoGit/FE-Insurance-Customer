@@ -1,0 +1,13 @@
+.add-btn-request{
+  width: auto;
+  height: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: orange;
+  margin-left: 221px;
+}
+.add-btn-request:hover{
+  background-color: orangered;
+  color: #fff;
+  transition: 0.2s;
+}

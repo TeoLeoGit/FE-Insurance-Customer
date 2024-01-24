@@ -11,6 +11,8 @@ const Header = () => {
   const [activeReq, setActiveReq] = useState("");
   const [activeNew, setActiveNew] = useState("");
   const { user } = useContext(AppContext);
+  console.log("user : ", user);
+
   const handleActiveHome = () => {
     setActiveHome("active");
     setActiveMy("");
@@ -64,17 +66,17 @@ const Header = () => {
               <ul className="top-contact">
                 <li>
                   <i className="fa fa-phone"></i>
-                  {user.phone}
+                  {user?.phone}
                 </li>
                 <li>
                   <i className="fa fa-envelope"></i>
-                  <a href="mailto:support@yourmail.com">{user.email}</a>
+                  <a href="mailto:support@yourmail.com">{user?.email}</a>
                 </li>
               </ul>
             </div>
             <div className="col-lg-2 col-md-2 col-12 user-container">
               <div className="user">
-                <p className="name">{user.displayName}</p>
+                <p className="name">{user?.displayName}</p>
                 <i className="fa-solid fa-user" onClick={handleUser}></i>
               </div>
               <div className="btn-logout">

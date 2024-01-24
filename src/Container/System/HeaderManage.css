@@ -1,6 +1,8 @@
 .link-manage{
   color: white;
   margin-left: 20px;
+  border-right: 2px solid rgb(50, 49, 49);
+  padding-right: 20px;
 }
 .link-manage:hover{
   color: rgb(27, 232, 12);

@@ -20,7 +20,6 @@ const BuyModal = (props) => {
           userId: userId,
         }
       );
-      console.log("res : ", res);
       props.handleHideModal();
       toast.success(
         "Đăng ký mua gói bảo hiểm thành công Vui lòng tới chi nhánh gần nhất để hoàn thành hợp đồng và thanh toán"

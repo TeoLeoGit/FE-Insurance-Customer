@@ -3,6 +3,7 @@ import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
+import { jwtDecode } from "jwt-decode";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -17,9 +18,10 @@ const LoginForm = () => {
         `http://nguyen1-001-site1.ftempurl.com/api/User?email=${email}&password=${password}`
       );
       // Xử lý dữ liệu từ response
-      if (response && response.data && response.data.errorCode === 0) {
-        console.log("res: ", response.data.userDTO);
-        setUser(response.data.userDTO);
+      let decodeToken = jwtDecode(response.data.token);
+      console.log(decodeToken);
+      if (response && response.data && response.data.token) {
+        setUser(decodeToken);
         history.push("/");
         // window.location.reload();
       }

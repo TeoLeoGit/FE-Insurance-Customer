@@ -35,7 +35,6 @@ const RegisterForm = ({ onRegister }) => {
       console.log(error);
     }
   };
-  console.log("state : ", name);
   return (
     <section className="contact-us section">
       <div className="container">
