@@ -13,6 +13,7 @@ import PaymentRequest from "./components/PaymentRequest";
 import { AppProvider } from "./Context/AppContext";
 import ManageCustomerInsurance from "./Container/System/ManageCustomerInsurance";
 import ManageResponse from "./Container/System/ManageResponse";
+import ManageRequestPayment from "./Container/System/ManageResquestPayment";
 
 //import background from ".public/img/placeholder.png";
 function App() {
@@ -30,6 +31,11 @@ function App() {
           <Route exact path="/accountProfile" component={AccountProfile} />
           <Route exact path="/myInsurance" component={MyInsurance} />
           <Route exact path="/manageResponse" component={ManageResponse} />
+          <Route
+            exact
+            path="/manageRequestPayment"
+            component={ManageRequestPayment}
+          />
           <Route
             exact
             path="/manageCustomerInsurance"

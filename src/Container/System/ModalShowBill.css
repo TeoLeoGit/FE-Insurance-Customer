@@ -1,0 +1,18 @@
+.image-bill{
+  height: 600px;
+  width:  760px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+.users-table{
+  margin: 0;
+  padding: 0;
+}

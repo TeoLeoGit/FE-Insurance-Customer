@@ -4,7 +4,7 @@ import axios from "axios";
 import HeaderManage from "./HeaderManage";
 import { toast } from "react-toastify";
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 const ManageCustomerInsurance = () => {
   let [arr, setArr] = useState([]);
   useEffect(() => {
@@ -14,8 +14,8 @@ const ManageCustomerInsurance = () => {
           `http://nguyen1-001-site1.ftempurl.com/api/Purchase/purchase-details`,
           {
             headers: {
-              'Authorization': `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
         setArr(res.data);
@@ -32,8 +32,8 @@ const ManageCustomerInsurance = () => {
         `http://nguyen1-001-site1.ftempurl.com/api/Purchase/update-purchase?insuranceId=${item.id}&userId=${item.userId}`,
         {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       toast.success("Duyệt gói bảo hiểm thành công !!");
@@ -79,12 +79,12 @@ const ManageCustomerInsurance = () => {
                   </td>
                   <td>
                     <button
-                      className="btn-primary mr-2"
+                      className="btn-primary mr-2 btn-complete"
                       onClick={() => handleApprove(item)}
                     >
                       Duyệt
                     </button>
-                    <button className="btn-danger">Xóa</button>
+                    <button className="btn-danger btn-deleted">Xóa</button>
                   </td>
                 </tr>
               );

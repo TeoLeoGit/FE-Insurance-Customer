@@ -4,7 +4,7 @@ import axios from "axios";
 import HeaderManage from "./HeaderManage";
 import { toast } from "react-toastify";
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 const ManageResponse = () => {
   let [arr, setArr] = useState([]);
   useEffect(() => {
@@ -14,7 +14,7 @@ const ManageResponse = () => {
           `http://nguyen1-001-site1.ftempurl.com/api/Feedback`,
           {
             headers: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
             },
           }
         );
@@ -32,7 +32,7 @@ const ManageResponse = () => {
         `https://localhost:44341/api/Feedback/${item.id}`,
         {
           headers: {
-            "Content-Type": "multipart/form-data"
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -78,12 +78,12 @@ const ManageResponse = () => {
                   </td>
                   <td>
                     <button
-                      className="btn-primary mr-2"
+                      className="btn-primary mr-2 btn-complete"
                       onClick={() => handleResponse(item)}
                     >
                       hoàn thành
                     </button>
-                    <button className="btn-danger">Xóa</button>
+                    <button className="btn-danger btn-deleted">Xóa</button>
                   </td>
                 </tr>
               );

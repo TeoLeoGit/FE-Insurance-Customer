@@ -2,3 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.btn-complete{
+  padding: 3px 5px;
+}
+.btn-deleted{
+  padding: 3px 5px;
+}

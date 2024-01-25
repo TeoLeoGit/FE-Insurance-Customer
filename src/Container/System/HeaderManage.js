@@ -36,7 +36,7 @@ const HeaderManage = () => {
               <Link to="/manageResponse">Quản lý Phản hồi</Link>
             </li>
             <li className="link-manage">
-              <Link to="/manageResponse">Quản lý Yêu cầu thanh toán</Link>
+              <Link to="/manageRequestPayment">Quản lý Yêu cầu thanh toán</Link>
             </li>
           </ul>
           <div className="navbar-nav">
