@@ -4,30 +4,23 @@ import "./MyInsurance.css";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-import { AppContext } from "../Context/AppContext";
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem("token");
 const MyInsurance = () => {
   let [arrInsurance, setArrInsurance] = useState([]);
-  const history = useHistory();
-  // const handleDetailInsurance = () => {
-  //   history.push("/detailInsurance");
-  //   window.location.reload();
-  // };
-  let { user } = useContext(AppContext);
-  console.log("user : ", user);
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/${user.userID}/purchased-insurances`,
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          }
+          `http://nguyen1-001-site1.ftempurl.com/api/User/${user.userID}/purchased-insurances`
+          // ,
+          // {
+          //   headers: {
+          //     'Authorization': `Bearer ${token}`
+          //   }
+          // }
         );
-        console.log("res : ", res);
         setArrInsurance(res.data);
       };
       loading();
@@ -49,14 +42,14 @@ const MyInsurance = () => {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row" style={{ marginBottom: "200px" }}>
             {arrInsurance &&
               arrInsurance.map((item, index) => {
                 return (
                   <Link
                     className="col-lg-4 col-md-6 col-12"
                     style={{ paddingBottom: `20px` }}
-                    //to={`/detailInsurance/${item.id}`}
+                    to={`/detailInsurance/${item.id}`}
                   >
                     <div className="single-news">
                       <div className="news-head">

@@ -8,23 +8,30 @@ import { toast } from "react-toastify";
 const AccountProfile = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const { user, setUser } = useContext(AppContext);
-  let id = user.userID;
-
-  const token = localStorage.getItem('token');
+  const [image, setImage] = useState("");
+  const [user, setUser] = useState({});
+  // const { user, setUser } = useContext(AppContext);
+  const users = JSON.parse(localStorage.getItem("user"));
+  let id = users.userID;
+  //const token = localStorage.getItem("token");
   const HandleChangeUser = async () => {
     try {
-      await axios.put(`http://nguyen1-001-site1.ftempurl.com/api/User/${id}`, {
-        displayName: name,
-        phone: phone,
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      let formData = new FormData();
+      formData.append("displayName", name);
+      formData.append("phone", phone);
+      formData.append("image", image);
+      let res = await axios.put(
+        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
-      setPhone("");
-      setName("");
+      );
+      // setPhone("");
+      // setName("");
+      console.log("res : ", res);
       toast.success("Cập nhật thông tin thành công !!");
     } catch (e) {
       console.log("error : ", e);
@@ -35,14 +42,8 @@ const AccountProfile = () => {
   useEffect(() => {
     let loadUser = async () => {
       let res = await axios.get(
-        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
+        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`
       );
-      console.log("res : ", res);
       setUser(res.data);
     };
     loadUser();
@@ -52,7 +53,7 @@ const AccountProfile = () => {
     <section className="news-single section">
       <Header />
       <div className="container">
-        <div className="row">
+        <div className="row" style={{ marginBottom: "200px" }}>
           <div className="col-lg-12 col-12">
             <div className="row">
               <div className="col-12">
@@ -62,13 +63,19 @@ const AccountProfile = () => {
                     <div className="single-comments">
                       <div className="main">
                         <div className="head">
-                          <img src="img/author1.jpg" alt="#" />
+                          {/* <img src="img/author1.jpg" alt="#" /> */}
+                          <div
+                            className="user-image"
+                            style={{
+                              backgroundImage: `url(${user.image})`,
+                            }}
+                          ></div>
                         </div>
                         <div className="body">
                           <div className="row">
                             <div className="col-lg-4 col-md-4 col-12">
                               <div className="info">
-                                <h4>Name</h4>
+                                <h4>Họ tên</h4>
                                 <p>{user.displayName}</p>
                               </div>
                             </div>
@@ -80,7 +87,7 @@ const AccountProfile = () => {
                             </div>
                             <div className="col-lg-4 col-md-4 col-12">
                               <div className="info">
-                                <h4>Contact number</h4>
+                                <h4>Số điện thoại</h4>
                                 <p>{user.phone}</p>
                               </div>
                             </div>
@@ -93,7 +100,7 @@ const AccountProfile = () => {
               </div>
               <div className="col-12">
                 <div className="comments-form">
-                  <h2>Update profile</h2>
+                  <h2>Cập nhật thông tin cá nhân</h2>
                   <div className="form">
                     <div className="row">
                       <div className="col-lg-4 col-md-4 col-12">
@@ -102,7 +109,7 @@ const AccountProfile = () => {
                           <input
                             type="text"
                             name="name"
-                            placeholder="Name"
+                            placeholder="Họ tên"
                             onChange={(e) => setName(e.target.value)}
                           />
                         </div>
@@ -112,9 +119,20 @@ const AccountProfile = () => {
                           <i className="fa fa-phone"></i>
                           <input
                             type="tel"
-                            name="phone"
-                            placeholder="Contact number"
+                            name="Số điện thoại"
+                            placeholder="Số điện thoại"
                             onChange={(e) => setPhone(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-12">
+                        <div className="form-group">
+                          <i class="fa-regular fa-image"></i>
+                          <input
+                            type="file"
+                            name="image"
+                            placeholder="Hình ảnh"
+                            onChange={(e) => setImage(e.target.files[0])}
                           />
                         </div>
                       </div>

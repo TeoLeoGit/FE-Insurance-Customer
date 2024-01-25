@@ -14,20 +14,30 @@ const LoginForm = () => {
   const { user, setUser } = useContext(AppContext);
   const handleLogin = async () => {
     try {
-      const response = await axios.get(
-        `http://nguyen1-001-site1.ftempurl.com/User?email=${email}&password=${password}`
+      const response = await axios.post(
+        `http://nguyen1-001-site1.ftempurl.com/api/User/login`,
+        {
+          email: email,
+          password: password,
+        }
       );
       // Xử lý dữ liệu từ response
-      
-      if (response && response.data && response.data.token) {
-        let decodeToken = jwtDecode(response.data.token);
-        console.log(decodeToken);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(decodeToken));
+      console.log("response : ", response);
+      // if (response && response.data && response.data.token) {
+      //   let decodeToken = jwtDecode(response.data.token);
+      //   console.log(decodeToken);
+      //   localStorage.setItem("token", response.data.token);
+      //   localStorage.setItem("user", JSON.stringify(decodeToken));
 
-        setUser(decodeToken);
+      //   setUser(decodeToken);
+      //   history.push("/");
+      //   window.location.reload();
+      // }
+
+      if (response && response.data && response.data.errorCode === 0) {
+        localStorage.setItem("user", JSON.stringify(response.data.userDTO));
         history.push("/");
-        // window.location.reload();
+        window.location.reload();
       }
     } catch (error) {
       setError(error.response.data.errorMessage);

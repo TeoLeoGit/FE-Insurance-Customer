@@ -29,12 +29,13 @@ const ManageResponse = () => {
     console.log("id : ", item.id);
     try {
       let res = await axios.put(
-        `https://localhost:44341/api/Feedback/${item.id}`,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        `http://nguyen1-001-site1.ftempurl.com/api/Feedback/${item.id}`
+        // ,
+        // {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        // }
       );
       console.log("res response : ", res);
       toast.success("Đã phản hồi khách hàng thành công !!");
@@ -81,7 +82,7 @@ const ManageResponse = () => {
                       className="btn-primary mr-2 btn-complete"
                       onClick={() => handleResponse(item)}
                     >
-                      hoàn thành
+                      Hoàn thành
                     </button>
                     <button className="btn-danger btn-deleted">Xóa</button>
                   </td>

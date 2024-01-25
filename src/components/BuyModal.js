@@ -3,37 +3,41 @@ import "./BuyModal.css";
 import { Modal } from "reactstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { AppContext } from "../Context/AppContext";
 const BuyModal = (props) => {
-  const [Date, setDate] = useState("");
-  const { user } = useContext(AppContext);
-  let userId = user.userID;
   const handleHideModal = () => {
     props.handleHideModal();
   };
 
-  const token = localStorage.getItem('token');
+  //const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem("user"));
+  let userId = user.userID;
   const handleSaveBuy = async () => {
     try {
-      console.log("Check token " + token);
       let res = await axios.post(
         "http://nguyen1-001-site1.ftempurl.com/api/Purchase",
         {
           id: props.id,
           userId: userId,
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
         }
+        // },
+        // {
+        //   headers: {
+        //     'Authorization': `Bearer ${token}`
+        //   }
+        // }
       );
-      props.handleHideModal();
-      toast.success(
-        "Đăng ký mua gói bảo hiểm thành công Vui lòng tới chi nhánh gần nhất để hoàn thành hợp đồng và thanh toán"
-      );
+      console.log("res : ", res);
+      if (res && res.data && res.data.success === true) {
+        props.handleHideModal();
+        toast.success(
+          "Đăng ký mua gói bảo hiểm thành công. Vui lòng tới chi nhánh gần nhất để hoàn thành hợp đồng và thanh toán"
+        );
+      }
     } catch (e) {
       console.log(e);
+      if (e && e.response && e.response.data && e.response.data.errorMessage) {
+        toast.error(e.response.data.errorMessage);
+      }
     }
   };
   return (

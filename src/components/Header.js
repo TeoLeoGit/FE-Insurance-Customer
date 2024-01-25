@@ -10,8 +10,8 @@ const Header = () => {
   const [activeMy, setActiveMy] = useState("");
   const [activeReq, setActiveReq] = useState("");
   const [activeNew, setActiveNew] = useState("");
-  const { user } = useContext(AppContext);
-  console.log("user : ", user);
+  // const { user } = useContext(AppContext);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleActiveHome = () => {
     setActiveHome("active");

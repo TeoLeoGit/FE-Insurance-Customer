@@ -1,21 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./RequestPaymentModal.css";
 import { Modal } from "reactstrap";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { AppContext } from "../Context/AppContext";
 const RequestPaymentModal = (props) => {
-  const { user } = useContext(AppContext);
-  let userId = user.userID;
-  
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem("token");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [bankAcount, setBankAcout] = useState("");
+  const [bankAccount, setBankAcount] = useState("");
   const [bankName, setBankName] = useState("");
   const [note, setNote] = useState("");
   const [image, setImage] = useState("");
+
+  const users = JSON.parse(localStorage.getItem("user"));
+  let userId = users.userID;
   const handleHideModal = () => {
     props.handleHideModal();
   };
@@ -26,7 +25,7 @@ const RequestPaymentModal = (props) => {
       formData.append("name", name);
       formData.append("phone", phone);
       formData.append("image", image);
-      formData.append("bankAcount", bankAcount);
+      formData.append("bankAccount", bankAccount);
       formData.append("bankName", bankName);
       formData.append("note", note);
       formData.append("userID", userId);
@@ -35,7 +34,7 @@ const RequestPaymentModal = (props) => {
         formData,
         {
           headers: {
-            'Authorization': `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -69,6 +68,7 @@ const RequestPaymentModal = (props) => {
                 <input
                   className="form-control"
                   onChange={(e) => setEmail(e.target.value)}
+                  //value={user.email}
                 />
               </div>
               <div className="col-6 form-group">
@@ -76,6 +76,7 @@ const RequestPaymentModal = (props) => {
                 <input
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
+                  //value={user.displayName}
                 />
               </div>
               <div className="col-6 form-group">
@@ -83,6 +84,7 @@ const RequestPaymentModal = (props) => {
                 <input
                   className="form-control"
                   onChange={(e) => setPhone(e.target.value)}
+                  //value={user.phone}
                 />
               </div>
 
@@ -90,7 +92,7 @@ const RequestPaymentModal = (props) => {
                 <label>Tài khoản ngân hàng</label>
                 <input
                   className="form-control"
-                  onChange={(e) => setBankAcout(e.target.value)}
+                  onChange={(e) => setBankAcount(e.target.value)}
                 />
               </div>
               <div className="col-6 form-group">

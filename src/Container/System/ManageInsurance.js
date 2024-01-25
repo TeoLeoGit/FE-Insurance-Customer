@@ -18,7 +18,7 @@ const ManageInsurance = () => {
 
   const [arrInsurance, setArrInsurance] = useState([]);
 
-  const token = localStorage.getItem('token');
+  //const token = localStorage.getItem("token");
   const handleAddInsurance = async () => {
     try {
       if (isEdit === false) {
@@ -35,7 +35,7 @@ const ManageInsurance = () => {
           {
             headers: {
               "Content-Type": "multipart/form-data",
-              'Authorization': `Bearer ${token}`
+              // Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -164,7 +164,7 @@ const ManageInsurance = () => {
                 : "btn btn-warning btn-add"
             }
             onClick={handleAddInsurance}
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: "21px", marginLeft: "440px" }}
           >
             {isEdit === true ? "Cập nhật thông tin" : "Thêm gói bảo hiểm"}
           </button>
