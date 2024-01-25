@@ -15,7 +15,7 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        `http://nguyen1-001-site1.ftempurl.com/api/User/login`,
+        `http://truongcuongtest-001-site1.etempurl.com/api/User/login`,
         {
           email: email,
           password: password,
@@ -23,16 +23,15 @@ const LoginForm = () => {
       );
       // Xử lý dữ liệu từ response
       console.log("response : ", response);
-      // if (response && response.data && response.data.token) {
-      //   let decodeToken = jwtDecode(response.data.token);
-      //   console.log(decodeToken);
-      //   localStorage.setItem("token", response.data.token);
-      //   localStorage.setItem("user", JSON.stringify(decodeToken));
+      if (response && response.data) {
+        let decodeToken = jwtDecode(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(decodeToken));
 
-      //   setUser(decodeToken);
-      //   history.push("/");
-      //   window.location.reload();
-      // }
+        setUser(decodeToken);
+        history.push("/");
+        window.location.reload();
+      }
 
       if (response && response.data && response.data.errorCode === 0) {
         localStorage.setItem("user", JSON.stringify(response.data.userDTO));

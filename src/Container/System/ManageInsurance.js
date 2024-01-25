@@ -18,7 +18,7 @@ const ManageInsurance = () => {
 
   const [arrInsurance, setArrInsurance] = useState([]);
 
-  //const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const handleAddInsurance = async () => {
     try {
       if (isEdit === false) {
@@ -30,12 +30,12 @@ const ManageInsurance = () => {
         formData.append("image", image);
         formData.append("description", description);
         await axios.post(
-          "http://nguyen1-001-site1.ftempurl.com/api/Insurance",
+          "http://truongcuongtest-001-site1.etempurl.com/api/Insurance",
           formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
-              // Authorization: `Bearer ${token}`,
+              'Authorization': `Bearer ${token}`,
             },
           }
         );
@@ -49,11 +49,12 @@ const ManageInsurance = () => {
         formData.append("image", image);
         formData.append("description", description);
         await axios.put(
-          `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${idEdit}`,
+          `http://truongcuongtest-001-site1.etempurl.com/api/Insurance/${idEdit}`,
           formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
+              'Authorization': `Bearer ${token}`,
             },
           }
         );
@@ -74,7 +75,12 @@ const ManageInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          "http://nguyen1-001-site1.ftempurl.com/api/Insurance"
+          "http://truongcuongtest-001-site1.etempurl.com/api/Insurance",
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          }
         );
         setArrInsurance(res.data);
       };

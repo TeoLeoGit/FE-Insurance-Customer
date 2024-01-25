@@ -18,7 +18,7 @@ const ListOfInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          "http://nguyen1-001-site1.ftempurl.com/api/Insurance",
+          "http://truongcuongtest-001-site1.etempurl.com/api/Insurance",
           {
             headers: {
               'Authorization': `Bearer ${token}`

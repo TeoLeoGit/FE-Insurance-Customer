@@ -5,19 +5,21 @@ import HeaderManage from "./HeaderManage";
 import { toast } from "react-toastify";
 
 //const user = JSON.parse(localStorage.getItem("user"));
+const token = localStorage.getItem('token');
+
 const ManageCustomerInsurance = () => {
   let [arr, setArr] = useState([]);
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/Purchase/purchase-details`
-          // ,
-          // {
-          //   headers: {
-          //     Authorization: `Bearer ${token}`,
-          //   },
-          // }
+          `http://truongcuongtest-001-site1.etempurl.com/api/Purchase/purchase-details`
+          ,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         setArr(res.data);
       };
@@ -30,13 +32,13 @@ const ManageCustomerInsurance = () => {
     try {
       console.log("item : ", item);
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/Purchase/update-purchase?insuranceId=${item.id}&userId=${item.userId}`
-        // ,
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`,
-        //   },
-        // }
+        `http://truongcuongtest-001-site1.etempurl.com/api/Purchase/update-purchase?insuranceId=${item.id}&userId=${item.userId}`
+        ,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       toast.success("Duyệt gói bảo hiểm thành công !!");
     } catch (e) {

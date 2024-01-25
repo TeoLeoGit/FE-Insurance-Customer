@@ -12,18 +12,26 @@ const HomePage = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const token = localStorage.getItem('token');
   console.log(name);
   console.log(email);
   console.log(phone);
+
   const handleResponse = async () => {
+    
     try {
       let res = await axios.post(
-        "http://nguyen1-001-site1.ftempurl.com/api/Feedback",
+        "http://truongcuongtest-001-site1.etempurl.com/api/Feedback",
         {
           email,
           name,
           phone,
           message,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       console.log("res: ", res);

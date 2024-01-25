@@ -49,12 +49,18 @@ const ManageRequestPayment = () => {
   // const handleEditChild = (item) => {
   //   HandleEdit(item);
   // };
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/Payment`
+          `http://truongcuongtest-001-site1.etempurl.com/api/Payment`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          }
         );
         setArr(res.data);
         // console.log("res : ", res);
@@ -69,10 +75,15 @@ const ManageRequestPayment = () => {
     console.log("item: ", item);
     try {
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/Payment/${item.id}`,
+        `http://truongcuongtest-001-site1.etempurl.com/api/Payment/${item.id}`,
         {
           status: "Đã thanh toán",
           reason: "",
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
         }
       );
       console.log("res : ", res);

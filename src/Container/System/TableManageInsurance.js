@@ -14,10 +14,11 @@ const TableManageInsurance = ({ arr, HandleEdit }) => {
 const token = localStorage.getItem('token');
   const handleDelete = async (id) => {
     await axios.delete(
-      `http://nguyen1-001-site1.ftempurl.com/api/Insurance/${id}`,
+      `http://truongcuongtest-001-site1.etempurl.com/api/Insurance/${id}`,
       {
         headers: {
-          "Content-Type": "multipart/form-data"
+            'Authorization': `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
         },
       }
     );

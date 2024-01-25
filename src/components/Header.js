@@ -78,13 +78,13 @@ const Header = () => {
               <div className="user">
                 <p className="name">{user?.displayName}</p>
                 <i className="fa-solid fa-user" onClick={handleUser}></i>
-              </div>
-              <div className="btn-logout">
+              </div> 
+              <Link className="btn-logout" to="/login">
                 <i
                   className="fa-solid fa-right-from-bracket"
-                  onClick={handleLogout}
+                  // onClick={handleLogout}
                 ></i>
-              </div>
+              </Link>
             </div>
           </div>
         </div>

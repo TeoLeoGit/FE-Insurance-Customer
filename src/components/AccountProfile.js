@@ -13,7 +13,7 @@ const AccountProfile = () => {
   // const { user, setUser } = useContext(AppContext);
   const users = JSON.parse(localStorage.getItem("user"));
   let id = users.userID;
-  //const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const HandleChangeUser = async () => {
     try {
       let formData = new FormData();
@@ -21,11 +21,12 @@ const AccountProfile = () => {
       formData.append("phone", phone);
       formData.append("image", image);
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`,
+        `http://truongcuongtest-001-site1.etempurl.com/api/User/${id}`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${token}`
           },
         }
       );
@@ -42,7 +43,12 @@ const AccountProfile = () => {
   useEffect(() => {
     let loadUser = async () => {
       let res = await axios.get(
-        `http://nguyen1-001-site1.ftempurl.com/api/User/${id}`
+        `http://truongcuongtest-001-site1.etempurl.com/api/User/${id}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+        }
       );
       setUser(res.data);
     };

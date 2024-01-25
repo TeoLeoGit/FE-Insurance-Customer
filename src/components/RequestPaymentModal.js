@@ -14,7 +14,10 @@ const RequestPaymentModal = (props) => {
   const [image, setImage] = useState("");
 
   const users = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem('token');
+
   let userId = users.userID;
+  console.log("Check user id " + userId)
   const handleHideModal = () => {
     props.handleHideModal();
   };
@@ -30,11 +33,11 @@ const RequestPaymentModal = (props) => {
       formData.append("note", note);
       formData.append("userID", userId);
       let res = await axios.post(
-        "http://nguyen1-001-site1.ftempurl.com/api/Payment",
+        "http://truongcuongtest-001-site1.etempurl.com/api/Payment",
         formData,
         {
           headers: {
-            // Authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }

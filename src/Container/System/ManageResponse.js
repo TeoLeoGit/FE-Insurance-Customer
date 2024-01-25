@@ -11,10 +11,11 @@ const ManageResponse = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/Feedback`,
+          `http://truongcuongtest-001-site1.etempurl.com/api/Feedback`,
           {
             headers: {
               "Content-Type": "multipart/form-data",
+              'Authorization': `Bearer ${token}`,
             },
           }
         );
@@ -29,13 +30,13 @@ const ManageResponse = () => {
     console.log("id : ", item.id);
     try {
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/Feedback/${item.id}`
-        // ,
-        // {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //   },
-        // }
+        `http://truongcuongtest-001-site1.etempurl.com/api/Feedback/${item.id}`
+        ,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        }
       );
       console.log("res response : ", res);
       toast.success("Đã phản hồi khách hàng thành công !!");

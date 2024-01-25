@@ -8,23 +8,23 @@ const BuyModal = (props) => {
     props.handleHideModal();
   };
 
-  //const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
+  console.log("Check token " + token)
   const user = JSON.parse(localStorage.getItem("user"));
   let userId = user.userID;
   const handleSaveBuy = async () => {
     try {
       let res = await axios.post(
-        "http://nguyen1-001-site1.ftempurl.com/api/Purchase",
+        "http://truongcuongtest-001-site1.etempurl.com/api/Purchase",
         {
           id: props.id,
           userId: userId,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
-        // },
-        // {
-        //   headers: {
-        //     'Authorization': `Bearer ${token}`
-        //   }
-        // }
       );
       console.log("res : ", res);
       if (res && res.data && res.data.success === true) {

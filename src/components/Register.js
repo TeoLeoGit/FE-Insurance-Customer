@@ -11,24 +11,23 @@ const RegisterForm = ({ onRegister }) => {
   const [err, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  //const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const handleOnclick = async (e) => {
     try {
       const response = await axios.post(
-        "http://nguyen1-001-site1.ftempurl.com/api/User/sign-up",
+        "http://truongcuongtest-001-site1.etempurl.com/api/User/sign-up",
         {
           email,
           password,
           retypePassword,
           displayName: name,
           phone: number,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         }
-        // ,
-        // {
-        //   headers: {
-        //     'Authorization': `Bearer ${token}`
-        //   }
-        // }
       );
       console.log(response);
       // Xử lý dữ liệu từ response

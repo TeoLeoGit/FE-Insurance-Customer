@@ -8,13 +8,19 @@ const PaymentRequest = () => {
   const [arrRequest, setArrRequest] = useState([]);
 
   const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
   let userid = user.userID;
 
   useEffect(() => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/User/${userid}/payment`
+          `http://truongcuongtest-001-site1.etempurl.com/api/User/${userid}/payment`,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
         setArrRequest(res.data);
       };

@@ -9,14 +9,19 @@ const RejectRequestModal = (props) => {
     props.handleHideModalReject();
   };
 
-  //const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const handleSaveReject = async () => {
     try {
       let res = await axios.put(
-        `http://nguyen1-001-site1.ftempurl.com/api/Payment/${props.items.id}`,
+        `http://truongcuongtest-001-site1.etempurl.com/api/Payment/${props.items.id}`,
         {
           status: "Thanh toán bị hủy",
           reason: reason,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
         }
       );
       console.log("res tu choi : ", res);

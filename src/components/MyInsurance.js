@@ -13,13 +13,13 @@ const MyInsurance = () => {
     try {
       const loading = async () => {
         let res = await axios.get(
-          `http://nguyen1-001-site1.ftempurl.com/api/User/${user.userID}/purchased-insurances`
-          // ,
-          // {
-          //   headers: {
-          //     'Authorization': `Bearer ${token}`
-          //   }
-          // }
+          `http://truongcuongtest-001-site1.etempurl.com/api/User/${user.userID}/purchased-insurances`
+          ,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
         );
         setArrInsurance(res.data);
       };
