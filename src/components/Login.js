@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./Login.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { AppContext } from "../Context/AppContext";
 import { jwtDecode } from "jwt-decode";
 
@@ -106,7 +106,7 @@ const LoginForm = () => {
                   <span className="text-notification" style={{ color: "red" }}>
                     {err}
                   </span>
-                  <a href="/register">Đăng kí tài khoản mới</a>
+                  <Link to="/register">Đăng kí tài khoản mới</Link>
                 </div>
               </div>
             </div>

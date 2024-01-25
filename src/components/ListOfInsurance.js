@@ -8,7 +8,7 @@ import Header from "./Header";
 const ListOfInsurance = () => {
   let [arrInsurance, setArrInsurance] = useState([]);
   const history = useHistory();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const handleDetailInsurance = () => {
     history.push("/detailInsurance");
     window.location.reload();
@@ -21,7 +21,7 @@ const ListOfInsurance = () => {
           "http://truongcuongtest-001-site1.etempurl.com/api/Insurance",
           {
             headers: {
-              'Authorization': `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -70,7 +70,7 @@ const ListOfInsurance = () => {
                         <div className="news-content">
                           <div className="date">{item.name}</div>
                           <h2>
-                            <a href="blog-single.html">{item.title}</a>
+                            <a href="#">{item.title}</a>
                           </h2>
                           <div className="price">
                             <p className="amount">{item.price} Vnd</p>

@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css";
+import { Link } from "react-router-dom";
+
 const RegisterForm = ({ onRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,7 +13,7 @@ const RegisterForm = ({ onRegister }) => {
   const [err, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const handleOnclick = async (e) => {
     try {
       const response = await axios.post(
@@ -25,8 +27,8 @@ const RegisterForm = ({ onRegister }) => {
         },
         {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log(response);
@@ -137,7 +139,7 @@ const RegisterForm = ({ onRegister }) => {
                     {err}
                     {message}
                   </span>
-                  <a href="/login">Đăng nhập</a>
+                  <Link to="/login">Đăng nhập</Link>
                 </div>
               </div>
             </div>
